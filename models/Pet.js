@@ -2,10 +2,16 @@ const { DataTypes } = require("sequelize")
 const db = require("../db")
 
 const Pet = db.define("Pet" , {
+
+    petId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+    },
+
     petName: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
         validate: {
             notEmpty: true,
         },
