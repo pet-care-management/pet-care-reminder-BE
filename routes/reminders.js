@@ -20,4 +20,12 @@ router.post("/", async (req, res) => {
     res.status(201).json(reminder);
 });
 
+router.delete("/:id", async (req, res) => {
+    const id = req.params.id
+    const reminder = await Reminder.findByPk(id);
+    if (!reminder) return res.status(404).json({error : "Reminder Not Found"});
+    await reminder.destroy();
+    res.sendStatus(204); 
+});
+
 module.exports = router
