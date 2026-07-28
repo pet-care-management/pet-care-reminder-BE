@@ -4,13 +4,11 @@ const Pet = require("./Pet")
 // 
 
 Pet.hasMany(Reminder, {
-    foreignKey: "petName",
-    sourceKey: "petName",
+    foreignKey: "petId",
     as: "reminders"
 })
 Reminder.belongsTo(Pet, {
-    foreignKey: "petName",
-    targetKey: "petName",
+    foreignKey: "petId",
     as: "pet"
 })
 

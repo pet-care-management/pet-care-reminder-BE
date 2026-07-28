@@ -7,6 +7,7 @@ const Pet = db.define("Pet" , {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true,
     },
 
     petName: {
