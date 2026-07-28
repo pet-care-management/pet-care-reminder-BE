@@ -7,7 +7,7 @@ const Reminder = db.define("Reminder", {
         allowNull : false,
         validate: { notEmpty: true },
         references: {
-            model: "Pets",
+            model: "Pet",
             key: "petId",
         },
     },
