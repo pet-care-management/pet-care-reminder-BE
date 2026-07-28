@@ -15,6 +15,9 @@ router.get("/:id", async (req, res) => {
     res.json(reminders);
 });
 
-
+router.post("/", async (req, res) => {
+    const reminder = await Reminder.create(req.body);
+    res.status(201).json(reminder);
+});
 
 module.exports = router
