@@ -2,10 +2,14 @@ const { DataTypes } = require("sequelize");
 const db = require("../db") ;
 
 const Reminder = db.define("Reminder", {
-    petName : {
-        type: DataTypes.STRING,
+    petId : {
+        type: DataTypes.INTEGER,
         allowNull : false,
         validate: { notEmpty: true },
+        references: {
+            model: "Pets",
+            key: "petId",
+        },
     },
     task : {
         type: DataTypes.STRING,
