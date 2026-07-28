@@ -4,7 +4,7 @@ async function seed() {
     await db.sync({ force: true });
 
     await Reminder.create({
-        petId : 1,
+        petName : "Jon",
         task : "do something",
         notes : "",
         dueDate : new Date(),
@@ -12,7 +12,7 @@ async function seed() {
     });
 
     await Reminder.create({
-        petId : 2,
+        petName : "Charli",
         task : "walk",
         notes : "",
         dueDate : new Date(),
