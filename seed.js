@@ -1,7 +1,23 @@
-const { db, Reminder } = require("./models");
+const { db, Reminder, Pet} = require("./models");
+
+
 
 async function seed() {
     await db.sync({ force: true });
+
+    await Pet.create({
+      petName: "Jon",
+      species: "Dog",
+      breed: "Labrador",
+      notes: "",
+    });
+
+    await Pet.create({
+      petName: "Charli",
+      species: "Dog",
+      breed: "Beagle",
+      notes: "",
+    });
 
     await Reminder.create({
         petName : "Jon",
