@@ -1,10 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const Reminder = require("../models/Reminder")
+const Pet = require("../models/Pet")
 
 router.get("/", async (req, res) => {
     console.log(Reminder)
-    const reminders = await Reminder.findAll();
+    const reminders = await Reminder.findAll({
+        include: [
+            {
+                model: Pet,
+            },
+        ],
+    });
     res.json(reminders);
 });
 
