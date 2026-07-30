@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
         include: [
             {
                 model: Pet,
+                as: "pet",
             },
         ],
     });
@@ -16,10 +17,17 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-    console.log(Reminder)
     const id = req.params.id
-    const reminders = await Reminder.findByPk(id);
-    res.json(reminders);
+    const reminder = await Reminder.findByPk(id, {
+        include: [
+            {
+                model: Pet,
+                as: "pet",
+            },
+        ],
+    });
+    if (!reminder) return res.status(404).json({error : "Reminder Not Found"});
+    res.json(reminder);
 });
 
 router.post("/", async (req, res) => {
