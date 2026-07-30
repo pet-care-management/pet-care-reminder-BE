@@ -1,22 +1,22 @@
 const express = require("express");
-const morgan = require("morgan")
+const morgan = require("morgan");
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
-const petCareDb = require("./db")
-require("./models")
+const petCareDb = require("./db");
+require("./models");
 
-const reminderRouter = require("./routes/reminders")
-const petRouter = require("./routes/pets")
+const reminderRouter = require("./routes/reminders");
+const petRouter = require("./routes/pets");
 
-app.use(cors())
-app.use(morgan("dev"))
-app.use(express.json())
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json());
 
-app.use("/reminder", reminderRouter)
-app.use("/pets", petRouter)
+app.use("/reminders", reminderRouter);
+app.use("/pets", petRouter);
 
 // app.get("/", (req, res) => {
 //   res.redirect("/api/tasks")
@@ -43,8 +43,8 @@ async function startServer() {
 }
 
 app.use((error, req, res, next) => {
-  console.error(error) ;
-  res.status(500).json({error: "Someting went wrong."})
-})
+  console.error(error);
+  res.status(500).json({ error: "Someting went wrong." });
+});
 
-startServer()
+startServer();
