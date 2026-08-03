@@ -43,7 +43,7 @@ router.delete("/:id", async (req, res) => {
     res.sendStatus(204); 
 });
 
-router.patch("/:id", async (req,res) => {
+router.patch("/:id/complete", async (req,res) => {
     const id = req.params.id
     const reminder = await Reminder.findByPk(id);
 
@@ -65,6 +65,26 @@ router.patch("/:id", async (req,res) => {
 
     reminder.isDone = true;
     await reminder.save();
+
+    res.json(reminder);
+});
+
+router.patch("/:id", async (req, res) => {
+    const id = req.params.id;
+    const reminder = await Reminder.findByPk(id);
+
+    if (!reminder) {
+        return res.status(404).json({ error: "Reminder Not Found" });
+    }
+
+    const { petId, task, notes, dueDate } = req.body;
+
+    await reminder.update({
+        petId,
+        task,
+        notes,
+        dueDate,
+    });
 
     res.json(reminder);
 });
